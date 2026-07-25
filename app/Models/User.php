@@ -30,5 +30,3 @@ class User extends Authenticatable
         ];
     }
 }
-
-$obj1 = new User();
