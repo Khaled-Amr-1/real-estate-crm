@@ -6,6 +6,9 @@ use App\Http\Controllers\LeadController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ActivityController;
 
+
+Route::post('/leads', [LeadController::class, 'store']);
+
 Route::middleware('auth:sanctum')->group(function () {
     
     Route::get('/user', function (Request $request) {

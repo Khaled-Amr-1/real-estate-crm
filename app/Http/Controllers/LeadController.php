@@ -37,4 +37,28 @@ class LeadController extends Controller
             'lead' => $lead,
         ]);
     }
+
+    public function store(Request $request)
+    {
+        if (Lead::query()->where('phone', $request->phone)->exists()) {
+            return response()->json([
+                'message' => 'Lead already exists with this phone number.'
+            ], 409);
+        }
+
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'phone' => 'required|string|max:20',
+            'source' => 'nullable|string|max:100',
+        ]);
+
+
+        $lead = Lead::create($validated);
+
+        // 4. إرجاع استجابة بنجاح العملية (201 Created)
+        return response()->json([
+            'message' => 'Lead created successfully',
+            'lead' => $lead
+        ], 201);
+    }
 }
