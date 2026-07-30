@@ -52,13 +52,25 @@ class LeadController extends Controller
             'source' => 'nullable|string|max:100',
         ]);
 
-
         $lead = Lead::create($validated);
-
-        // 4. إرجاع استجابة بنجاح العملية (201 Created)
+        
         return response()->json([
             'message' => 'Lead created successfully',
             'lead' => $lead
         ], 201);
+    }
+
+    public function show(Request $request, Lead $lead)
+    {
+
+        Gate::authorize('view', $lead);
+
+        $lead->load(['activities' => function ($query) {
+            $query->join('users', 'activites.user_id', '=', 'users.id')
+                  ->select('activites.*', 'users.name as created_by_name')
+                  ->orderBy('activites.created_at', 'desc'); 
+        }]);
+
+        return response()->json($lead);
     }
 }
