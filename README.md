@@ -7,14 +7,13 @@ A lightweight CRM built with Laravel for managing projects, units, leads, activi
 - Manage projects, units, and leads
 - Track activities and user actions
 - Authentication and authorization (policies)
-- API routes and web UI scaffolding
+- API routes
 
 ## Requirements
 
 - PHP 8.1+
 - Composer
 - MySQL or other supported database
-- Node.js & npm (for frontend assets)
 
 ## Quick Start
 
@@ -39,14 +38,7 @@ php artisan key:generate
 php artisan migrate --seed
 ```
 
-5. Install frontend dependencies and build assets:
-
-```bash
-npm install
-npm run build
-```
-
-6. Start the local server:
+5. Start the local server:
 
 ```bash
 php artisan serve
@@ -60,23 +52,12 @@ Key environment variables to check in `.env`:
 
 - `APP_NAME`, `APP_ENV`, `APP_DEBUG`
 - `DB_CONNECTION`, `DB_HOST`, `DB_PORT`, `DB_DATABASE`, `DB_USERNAME`, `DB_PASSWORD`
-- Mail and queue settings if used (MAIL\_\*, QUEUE_CONNECTION)
 
-## Testing
-
-Run the test suite with Pest or Artisan:
-
-```bash
-./vendor/bin/pest
-# or
-php artisan test
-```
 
 ## Useful Commands
 
 - Fresh database with seeders: `php artisan migrate:fresh --seed`
-- Run queue worker: `php artisan queue:work`
-- Open tinker: `php artisan tinker`
+
 
 ## Contributing
 
