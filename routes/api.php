@@ -6,6 +6,7 @@ use App\Http\Controllers\LeadController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ActivityController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\UnitController;
 
 Route::post('/login', [AuthController::class, 'login']);
@@ -23,6 +24,8 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/leads/{lead}/activities', [ActivityController::class, 'store']); 
 
     Route::get('/units', [UnitController::class, 'index']);
+
+    Route::get('/dashboard/stats', [DashboardController::class, 'stats']);
 
     Route::middleware('role:admin')->prefix('admin')->group(function () {
 
